@@ -1,4 +1,4 @@
-from src.scheduler.scheduler import run_tasks
+from scheduler.scheduler import run_tasks
 import schedule
 import time
 from dotenv import load_dotenv

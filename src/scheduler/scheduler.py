@@ -1,8 +1,13 @@
 import schedule
-from src.clients.weather_client import get_weather
-from src.clients.whatappConnector import custom_message
+from clients.weather_client import Weather_Client
+from clients.whatsapp_client import Whatsapp_Client
 import datetime
+from dotenv import load_dotenv
 
+load_dotenv()
+
+wa_client = Whatsapp_Client()
+we_client = Weather_Client()
 get_message = lambda message: message
 
 iac_days = ["Sunday", "Monday", "Wednesday"]
@@ -24,13 +29,13 @@ def run_tasks():
     for day in iac_days:
         if current_day == day:
             schedule.every().day.at("15:30").do(
-                lambda day=day: custom_message(f"Weather for {day}: {get_weather()}")
+                lambda day=day: wa_client.custom_message(f"Weather for {day}: {we_client.get_weather()}")
             )
 
     for day, message in open_uni_days.items():
         if current_day == day:
             schedule.every().day.at("10:30").do(
-                lambda message=message: custom_message(
+                lambda message=message: wa_client.custom_message(
                     f"Class reminder: {get_message(message)}"
                 )
             )
@@ -38,7 +43,7 @@ def run_tasks():
     for day, message in assignment_days.items():
         if current_day == day:
             schedule.every().day.at("12:00").do(
-                lambda message=message: custom_message(
+                lambda message=message: wa_client.custom_message(
                     f"Assignment reminder: {get_message(message)}"
                 )
             )
