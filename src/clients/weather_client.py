@@ -2,7 +2,7 @@ import requests
 import os
 
 
-class Weather_Client():
+class Weather_Client:
     def __init__(self):
         self.API_KEY = os.getenv("API_WEATHER_TOKEN")
         self.rain_threshold = 40

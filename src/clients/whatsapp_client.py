@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from twilio.rest import Client
 
 
-class Whatsapp_Client():
+class Whatsapp_Client:
     def __init__(self):
         self.ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
         self.AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
