@@ -1,5 +1,5 @@
 import os
-from lambda_packages.twilio.rest import Client
+from twilio.rest import Client
 
 
 class Whatsapp_Client:
