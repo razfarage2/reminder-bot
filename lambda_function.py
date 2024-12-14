@@ -17,17 +17,15 @@ def lambda_handler(event, context):
         wa_client = Whatsapp_Client()
         we_client = Weather_Client()
 
-        iac_days = ["Sunday", "Monday", "Wednesday", "Saturday"]
+        iac_days = ["Sunday", "Monday", "Wednesday"]
 
         open_uni_days = {
             "Tuesday": "You have Class today - Statistics.",
             "Thursday": "You have Class today - Intro To Psychology.",
-            "Saturday": "You have Class today - Programming.",
         }
         assignment_days = {
             "Wednesday": "Don't forget you have to turn in your assignment Tomorrow.",
             "Thursday": "You need to turn in your assignment Today.",
-            "Saturday": "Reminder: Assignment submission due by Monday.",
         }
 
         event_type = event.get("type", "unknown").lower()
