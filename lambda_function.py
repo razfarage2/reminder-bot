@@ -8,7 +8,7 @@ load_dotenv()
 
 def lambda_handler(event, context):
     try:
-        event_handler = Event_Handler()
+      
         event_type = event.get("type", "unknown").lower()
 
         match event_type:

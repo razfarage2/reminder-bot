@@ -1,5 +1,4 @@
 pip==23.2.1
-schedule==1.2.2
 python-dotenv==1.0.1
 requests==2.32.3
 twilio==9.4.1
