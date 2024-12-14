@@ -24,11 +24,19 @@ class Event_Handler():
             "Saturday": "Reminder: Assignment submission due by Monday.",
         }
 
-    # TODO: check if this is a viable option for the future
-    def generic_reminder(self, reminder_function):
-        if not callable(reminder_function): # requires the user to input a function
-            raise ValueError("The provided argument must be a function")
+    def type_check(self,*expected_types):
+        def decorator(func):
+            def wrapper(*args, **kwargs):
+                for arg, expected_type in zip(args, expected_types):
+                    if not isinstance(arg, expected_type):
+                        raise TypeError(f"Expected {expected_type} but got {type(arg)}")
+                return func(*args, **kwargs)
+            return wrapper
+        return decorator
 
+    # TODO: check if this is a viable option for the future
+    @type_check(callable)
+    def generic_reminder(self, reminder_function):
         reminder_message = reminder_function()
         if reminder_message:
             self.wa_client.custom_message(reminder_message)

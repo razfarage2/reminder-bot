@@ -20,6 +20,22 @@ class Weather_Client:
         if self.weather_data.status_code != 200:
             raise Exception(f"Failed to fetch weather data: {self.weather_data.status_code}")
 
+    def retry_function(self, retires=3, exception=Exception):
+        def decorator(func):
+            def wrapper(*args, **kwargs):
+                attempts = 0
+                while attempts < retires:
+                    try:
+                        return func(*args, **kwargs)
+                    except exception as e:
+                        attempts = +1
+                        print(f'Failed: ({attempts}/{retires})')
+                raise exception
+
+            return wrapper
+
+        return decorator
+
     def temp_cel(self):
         temp_F = self.weather_data.json()["main"]["temp"]
         temp_C = round(
@@ -40,6 +56,7 @@ class Weather_Client:
         else:
             return f"The chance for rain in Tel Aviv is low today ({chance_for_rain}%). Enjoy your day!"
 
+    @retry_function(retires=5, exception=requests.exceptions.HTTPError)
     def get_weather(self):
         # edge case for not finding the city
         if self.weather_data.json()["cod"] == "404":
