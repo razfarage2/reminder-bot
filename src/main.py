@@ -1,7 +1,8 @@
-from scheduler.scheduler import run_tasks
-import schedule
+from lambda_packages.scheduler.scheduler import run_tasks
+from lambda_packages import schedule
 import time
-from dotenv import load_dotenv
+from lambda_packages.dotenv import load_dotenv
+
 
 
 load_dotenv()

@@ -1,8 +1,9 @@
-import schedule
+from lambda_packages import schedule
 from clients.weather_client import Weather_Client
 from clients.whatsapp_client import Whatsapp_Client
 import datetime
-from dotenv import load_dotenv
+from lambda_packages.dotenv import load_dotenv
+
 
 load_dotenv()
 

@@ -1,4 +1,4 @@
-import requests
+from lambda_packages import requests
 import os
 
 
