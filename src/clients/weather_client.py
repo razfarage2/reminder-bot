@@ -1,7 +1,9 @@
-from lambda_packages import requests
+import requests
 import os
-
-
+# from whatsapp_client import Whatsapp_Client
+# from dotenv import load_dotenv
+#
+# load_dotenv()
 class Weather_Client:
     def __init__(self):
         self.API_KEY = os.getenv("API_WEATHER_TOKEN")
