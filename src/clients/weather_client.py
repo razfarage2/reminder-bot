@@ -36,7 +36,7 @@ class Weather_Client:
             weather_forecast = sentence[0]
             return weather_forecast
         else:
-            return f"The chance for rain in Tel Aviv is low today ({chance_for_rain}%). Enjoy your day!"
+            return f"🌞 Low chance of rain in Tel Aviv today ({chance_for_rain}%)—perfect day to enjoy the sunshine!🌞"
 
     def get_weather(self):
         # edge case for not finding the city
